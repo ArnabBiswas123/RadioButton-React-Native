@@ -2,33 +2,50 @@ import React from 'react';
 import {Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 import {useState} from 'react';
 
+const skills = [
+  {
+    id: 1,
+    name: 'radio 1',
+  },
+  {
+    id: 2,
+    name: 'radio 2',
+  },
+  {
+    id: 3,
+    name: 'radio 3',
+  },
+  {
+    id: 4,
+    name: 'radio 4',
+  },
+  {
+    id: 5,
+    name: 'radio 5',
+  },
+];
+
 export default function App() {
   const [selectedRadio, setSelectedRadio] = useState(1);
 
   return (
     <View style={styles.main}>
-      <TouchableOpacity
-        onPress={() => {
-          setSelectedRadio(1);
-        }}>
-        <View style={{alignItems: 'center', flexDirection: 'row'}}>
-          <View style={styles.radio}>
-            {selectedRadio === 1 ? <View style={styles.radioBg}></View> : null}
+      {skills.map(item => (
+        <TouchableOpacity
+        key={item.id}
+          onPress={() => {
+            setSelectedRadio(item.id);
+          }}>
+          <View style={{alignItems: 'center', flexDirection: 'row'}}>
+            <View style={styles.radio}>
+              {selectedRadio === item.id ? (
+                <View style={styles.radioBg}></View>
+              ) : null}
+            </View>
+            <Text style={styles.radioText}>{item.name}</Text>
           </View>
-          <Text style={styles.radioText}>Radio 1</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => {
-          setSelectedRadio(2);
-        }}>
-        <View style={{alignItems: 'center', flexDirection: 'row'}}>
-          <View style={styles.radio}>
-            {selectedRadio === 2 ? <View style={styles.radioBg}></View> : null}
-          </View>
-          <Text style={styles.radioText}>Radio 2</Text>
-        </View>
-      </TouchableOpacity>
+        </TouchableOpacity>
+      ))}
     </View>
   );
 }
