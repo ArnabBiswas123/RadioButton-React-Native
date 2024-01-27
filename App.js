@@ -1,51 +1,41 @@
-import React from 'react';
-import {View, Modal, Button, StyleSheet, Text} from 'react-native';
-import {useState} from 'react';
+import React, {useState} from 'react';
+import {View, Text, StyleSheet, Button} from 'react-native';
 
 export default function App() {
-  const [showModal, setShowModal] = useState(false);
+  const [show, setShow] = useState(false);
+
   return (
-    <View style={styles.main}>
-      <Modal transparent={true} visible={showModal} animationType="slide">
-        <View style={styles.centerrview}>
-          <View style={styles.modalview}>
-            <Text style={{fontSize: 20, margin: 20}}>
-              Hello Welcome to the Modal here
-            </Text>
-            <Button
-              title="Close Modal"
-              onPress={() => {
-                setShowModal(false);
-              }}
-            />
+    <View style={styles.container}>
+      {show ? (
+        <View style={styles.modal}>
+          <View style={styles.body}>
+            <Text>Some Text</Text>
+            <Button title="Close" onPress={()=>{setShow(false)}}/>
           </View>
         </View>
-      </Modal>
-      <Button
-        title="Open Modal"
-        onPress={() => {
-          setShowModal(true);
-        }}
-      />
+      ) : null}
+
+      <Button title="Open Dialog" onPress={()=>{setShow(true)}}/>
     </View>
   );
 }
-
 const styles = StyleSheet.create({
-  main: {
+  container: {
     flex: 1,
     justifyContent: 'flex-end',
   },
-  centerrview: {
+  modal: {
     flex: 1,
+    backgroundColor: 'rgba(50,50,50,.5)',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  modalview: {
-    backgroundColor: 'skyblue',
-    padding: 50,
-    borderRadius: 20,
-    shadowColor: 'black',
-    elevation: 5,
+  body: {
+    backgroundColor: 'white',
+    height: 200,
+    width: 200,
+    padding: 20,
+    justifyContent: 'flex-end',
+    borderRadius: 10,
   },
 });
