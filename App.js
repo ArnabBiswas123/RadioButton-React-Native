@@ -6,11 +6,11 @@ export default function App() {
   const [showModal, setShowModal] = useState(false);
   return (
     <View style={styles.main}>
-      <Modal transparent={true} visible={showModal} animationType='slide'>
+      <Modal transparent={true} visible={showModal} animationType="slide">
         <View style={styles.centerrview}>
           <View style={styles.modalview}>
             <Text style={{fontSize: 20, margin: 20}}>
-              Hello Welcome to the Modal
+              Hello Welcome to the Modal here
             </Text>
             <Button
               title="Close Modal"
